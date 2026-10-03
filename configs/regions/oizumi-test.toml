@@ -1,0 +1,18 @@
+# rail-gap-map@4176263 の configs/regions/oizumi-test.toml から写した (ekiwalk の範囲の設定)
+name = "oizumi-test"
+label = "試運転: 大泉学園町付近"
+crs = "EPSG:6677"
+display_prefixes = ["13"]
+display_exclude_codes = []
+compute_buffer_m = 1500
+bbox = [139.555, 35.735, 139.640, 35.785]
+n03_prefectures = ["11", "13"]
+osm_source = "osm-kanto"
+cell_m = 25
+walk_m_per_min = 80
+levels_min = [5, 10, 15, 20, 25, 30, 45, 60]
+access_radius_m = 100
+max_offroad_m = 300
+smooth_sigma_cells = 1.0
+simplify_m = 5
+home_view = { center = [139.597, 35.760], zoom = 13 }

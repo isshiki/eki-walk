@@ -1,0 +1,15 @@
+# 駅の縄張りマップの設定。道路網・駅・格子は configs/regions/<region>.toml (ekiwalk の形式)
+region = "tokyo"
+limit_m = 1200          # 15 分 (80 m = 1 分)
+band_m = 240            # 2 番目に近い駅との差が 3 分以内 = 境界付近の帯
+merge_same_name_m = 600 # 同じ駅名で 600 m 以内のグループを 1 駅にまとめる
+simplify_m = 25         # 境界の単純化 (Douglas-Peucker)
+chaikin_iterations = 3  # 角を丸める回数
+chunk_cells = 64        # 画面用の区画 (64 × 25 m = 1.6 km 四方)
+max_colors = 6
+min_island_cells = 64      # これより小さい飛び地 (64 × 625 m² = 4 ha) はまわりの縄張りに含める (描画のみ)
+min_hole_m2 = 100000      # 15 分圏の輪郭から、これより小さい穴 (10 ha) を消す
+# 描画: 海岸線・県境を 5 m の誤差で単純化する。となりの都県と境目を共有したまま単純化するので、
+# ここに挙げた地域の admin の段が済んでいること。
+edge_regions = ["tokyo", "saitama", "chiba", "kanagawa"]
+edge_simplify_m = 5

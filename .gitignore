@@ -1,0 +1,70 @@
+# Local datasets, generated artifacts, and caches (create locally as needed)
+/data/
+/logs/
+/outputs/
+/artifacts/
+*.parquet
+*.geoparquet
+*.pbf
+*.osm
+*.osm.*
+*.duckdb*
+*.db
+*.db-*
+*.sqlite*
+*.csv
+*.tsv
+*.jsonl
+*.ndjson
+*.geojson
+*.gpkg
+*.shp
+*.shx
+*.dbf
+*.tif
+*.tiff
+*.zip
+*.gz
+*.7z
+*.tar
+*.npz
+
+# Generated app data (published only on the gh-pages branch)
+/web/*/data/
+
+# Secrets and local settings
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+credentials*.json
+secrets.*
+.aws/
+
+# Python/build/tool state
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+/build/
+/dist/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.uv-cache/
+.cache/
+.coverage*
+htmlcov/
+
+# Local editors and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.log
+
+# Generated web data for the territory map (published only on the gh-pages branch)
+/web/data/

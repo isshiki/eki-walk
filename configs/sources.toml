@@ -1,0 +1,86 @@
+# rail-gap-map@4176263 の configs/sources.toml から写した (oedo-pdf を除く)。ABR の規約名は2026-10-04に公式規約へ合わせて修正。ekiwalk の raw_path が読む
+# 取得するファイル。size_hint は確認時に利用者へ示す目安
+[osm-kanto]
+url = "https://download.geofabrik.de/asia/japan/kanto-261001.osm.pbf"
+file = "kanto-261001.osm.pbf"
+size_hint = "約 492 MB (515,684,430 bytes)"
+license = "ODbL 1.0"
+
+[n02]
+url = "https://nlftp.mlit.go.jp/ksj/gml/data/N02/N02-25/N02-25_GML.zip"
+file = "N02-25_GML.zip"
+size_hint = "14.2 MB"
+license = "CC BY 4.0"
+
+[n03-11]
+url = "https://nlftp.mlit.go.jp/ksj/gml/data/N03/N03-2026/N03-20260101_11_GML.zip"
+file = "N03-20260101_11_GML.zip"
+size_hint = "3.41 MB"
+license = "CC BY 4.0"
+
+[n03-12]
+url = "https://nlftp.mlit.go.jp/ksj/gml/data/N03/N03-2026/N03-20260101_12_GML.zip"
+file = "N03-20260101_12_GML.zip"
+size_hint = "7.76 MB"
+license = "CC BY 4.0"
+
+[n03-13]
+url = "https://nlftp.mlit.go.jp/ksj/gml/data/N03/N03-2026/N03-20260101_13_GML.zip"
+file = "N03-20260101_13_GML.zip"
+size_hint = "12.54 MB"
+license = "CC BY 4.0"
+
+[n03-14]
+url = "https://nlftp.mlit.go.jp/ksj/gml/data/N03/N03-2026/N03-20260101_14_GML.zip"
+file = "N03-20260101_14_GML.zip"
+size_hint = "5.12 MB"
+license = "CC BY 4.0"
+
+[abr-town-13]
+url = "https://data.address-br.digital.go.jp/mt_town/pref/mt_town_pref13.csv.zip"
+file = "mt_town_pref13.csv.zip"
+size_hint = "約 84 KB (83,827 bytes)"
+license = "PDL1.0"
+
+[abr-town-pos-13]
+url = "https://data.address-br.digital.go.jp/mt_town_pos/pref/mt_town_pos_pref13.csv.zip"
+file = "mt_town_pos_pref13.csv.zip"
+size_hint = "約 84 KB (84,132 bytes)"
+license = "PDL1.0"
+
+# --- eki-walk で足したもの (首都圏への拡大。取得は各県に進むときに確認を取ってから) ---
+[abr-town-11]
+url = "https://data.address-br.digital.go.jp/mt_town/pref/mt_town_pref11.csv.zip"
+file = "mt_town_pref11.csv.zip"
+size_hint = "144,717 bytes"
+license = "PDL1.0"
+
+[abr-town-pos-11]
+url = "https://data.address-br.digital.go.jp/mt_town_pos/pref/mt_town_pos_pref11.csv.zip"
+file = "mt_town_pos_pref11.csv.zip"
+size_hint = "111,586 bytes"
+license = "PDL1.0"
+
+[abr-town-12]
+url = "https://data.address-br.digital.go.jp/mt_town/pref/mt_town_pref12.csv.zip"
+file = "mt_town_pref12.csv.zip"
+size_hint = "207,578 bytes"
+license = "PDL1.0"
+
+[abr-town-pos-12]
+url = "https://data.address-br.digital.go.jp/mt_town_pos/pref/mt_town_pos_pref12.csv.zip"
+file = "mt_town_pos_pref12.csv.zip"
+size_hint = "124,662 bytes"
+license = "PDL1.0"
+
+[abr-town-14]
+url = "https://data.address-br.digital.go.jp/mt_town/pref/mt_town_pref14.csv.zip"
+file = "mt_town_pref14.csv.zip"
+size_hint = "130,762 bytes"
+license = "PDL1.0"
+
+[abr-town-pos-14]
+url = "https://data.address-br.digital.go.jp/mt_town_pos/pref/mt_town_pos_pref14.csv.zip"
+file = "mt_town_pos_pref14.csv.zip"
+size_hint = "87,036 bytes"
+license = "PDL1.0"

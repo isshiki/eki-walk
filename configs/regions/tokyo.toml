@@ -1,0 +1,20 @@
+# rail-gap-map@4176263 の configs/regions/tokyo.toml から写した (ekiwalk の範囲の設定)
+name = "tokyo"
+label = "東京都 (島しょを除く)"
+crs = "EPSG:6677"              # 平面直角座標系 IX 系 (JGD2011)
+# 表示範囲: N03 の行政区域コードの先頭が一致するもの。島しょは exclude で除く
+display_prefixes = ["13"]
+display_exclude_codes = ["13361", "13362", "13363", "13364", "13381", "13382", "13401", "13402", "13421"]
+compute_buffer_m = 3000
+# 計算用の外枠 (WGS84)。PBF から切り出す範囲。表示範囲 + 3 km を十分に含む
+bbox = [138.90, 35.47, 140.00, 35.93]
+n03_prefectures = ["11", "12", "13", "14"]
+osm_source = "osm-kanto"
+cell_m = 25
+walk_m_per_min = 80
+levels_min = [5, 10, 15, 20, 25, 30, 45, 60]
+access_radius_m = 100
+max_offroad_m = 300
+smooth_sigma_cells = 1.0
+simplify_m = 5
+home_view = { center = [139.60, 35.69], zoom = 10 }

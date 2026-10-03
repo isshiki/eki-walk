@@ -1,0 +1,11 @@
+# 試運転: 大泉学園町付近 (ekiwalk の oizumi-test)
+region = "oizumi-test"
+limit_m = 1200
+band_m = 240
+merge_same_name_m = 600
+simplify_m = 25
+chaikin_iterations = 3
+chunk_cells = 64
+max_colors = 6
+min_island_cells = 64      # これより小さい飛び地 (64 × 625 m² = 4 ha) はまわりの縄張りに含める (描画のみ)
+min_hole_m2 = 100000      # 15 分圏の輪郭から、これより小さい穴 (10 ha) を消す

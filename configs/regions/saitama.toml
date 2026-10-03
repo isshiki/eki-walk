@@ -1,0 +1,19 @@
+# 埼玉県 (ekiwalk の形式。値は configs/regions/tokyo.toml と同じ規則で決めた)
+name = "saitama"
+label = "埼玉県"
+crs = "EPSG:6677"              # 平面直角座標系 IX 系 (JGD2011)
+display_prefixes = ["11"]
+display_exclude_codes = []
+compute_buffer_m = 3000
+# 計算用の外枠 (WGS84): N03 の埼玉県の範囲を 3 km 広げたもの
+bbox = [138.67, 35.72, 139.94, 36.32]
+n03_prefectures = ["11"]
+osm_source = "osm-kanto"
+cell_m = 25
+walk_m_per_min = 80
+levels_min = [5, 10, 15, 20, 25, 30, 45, 60]
+access_radius_m = 100
+max_offroad_m = 300
+smooth_sigma_cells = 1.0
+simplify_m = 5
+home_view = { center = [139.345, 36.0], zoom = 9 }

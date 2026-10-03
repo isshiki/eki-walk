@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>駅の縄張りマップ 【首都圏編】</title>
+  <meta name="description" content="住んでいる所・これから住む所が、どの駅の勢力圏 (縄張り) に入るかを、歩く道のりで示す地図です。対象は東京都 (島しょを除く)・埼玉県・千葉県・神奈川県。">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/maplibre-gl@6.11.2/dist/maplibre-gl.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header id="bar">
+    <h1>駅の縄張りマップ <span class="edition">【首都圏編】</span></h1>
+    <form id="search" role="search" autocomplete="off">
+      <input id="q" type="search" placeholder="駅名・住所 (○丁目まで) で探す" aria-label="駅名・住所 (○丁目まで) で探す">
+      <ul id="hits" hidden></ul>
+    </form>
+    <button id="locate" type="button">現在地</button>
+    <div class="seg" role="group" aria-label="背景">
+      <button type="button" data-base="map" aria-pressed="true">地図</button>
+      <button type="button" data-base="photo" aria-pressed="false">航空写真</button>
+    </div>
+    <button id="about-open" type="button">このマップについて</button>
+  </header>
+  <main id="map" aria-label="地図"></main>
+  <p id="hint">地図をクリック (タップ) すると、その地点がどの駅の勢力圏かを表示します。駅名をクリック (タップ) すると、その駅の縄張りを表示します。</p>
+  <div id="side">
+  <div id="legend" aria-label="凡例"></div>
+  <section id="panel" hidden aria-live="polite">
+    <button id="panel-close" type="button" aria-label="閉じる">×</button>
+    <div id="result"></div>
+    <p class="note">道のりで測った目安です。<button type="button" class="link" data-open-about>この計算の限界</button></p>
+  </section>
+  </div>
+  <dialog id="about">
+    <h2>このマップについて</h2>
+    <p>色分けは、歩く道のりでいちばん近い駅の範囲 (駅の「縄張り」) です。となり合う縄張りは別の色にしています。80m を 1 分として、端数は切り上げています。</p>
+    <p>対象は東京都 (島しょを除く)・埼玉県・千葉県・神奈川県です。ほかの地域は要望があれば足します。</p>
+    <ul>
+      <li>斜線: いちばん近い駅と 2 番目に近い駅の両方に 15 分以内で行けて、その差が 3 分以内の所です (どちらの駅もほぼ同じ近さ)。ほかの駅の 15 分圏との重なりは、地点をクリック (タップ) すると表示します。</li>
+      <li>色の薄い所: いちばん近い駅まで 15 分を超える所と、川・池などの水面や道から遠い所 (道のりを出していない所) です。縄張りの色は、いちばん近い縄張りを広げて塗っています。</li>
+      <li>同じ名前の乗換駅は、600m 以内なら 1 駅にまとめています (名前の違う乗換駅はまとめていません)。</li>
+    </ul>
+    <h3>この計算の限界</h3>
+    <ul>
+      <li>道のりは、ホームの線から 100m 以内の道を起点に測っています。駅の出口からではありません。</li>
+      <li>信号待ち・坂・階段・踏切・地下の上り下りは入れていません。</li>
+      <li>道路網は関東のデータを使い、静岡県・山梨県側の道を含みません。箱根・丹沢などの県境付近では道のりが長めに出たり、最寄り駅の判定に影響したりする場合があります。</li>
+      <li>縄張りの境界は見やすさのために滑らかにしています (位置のずれは数十 m 程度)。広く見ているときは、データを軽くするため形をさらに簡略にしています (拡大すると詳しい形になります)。</li>
+      <li>道から 300m を超える所と川・池などの水面は、道のりを計算していません (色を薄くしています)。4ha より小さい飛び地は、まわりの縄張りに含めて描いています (クリック (タップ) すると、いちばん近い駅も表示します)。</li>
+      <li>物件広告の「徒歩○分」(駅の出入口から物件の敷地まで) とは測り方が違います。</li>
+    </ul>
+    <h3>出典</h3>
+    <ul>
+      <li>道路・水面: <a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors</a> (<a href="https://opendatacommons.org/licenses/odbl/1-0/">ODbL 1.0</a>) <span data-meta="osm"></span></li>
+      <li>駅・行政区域: 「国土数値情報（鉄道データ）」（国土交通省）（<a href="https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-N02-2025.html">https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-N02-2025.html</a>）、「国土数値情報（行政区域データ）」（国土交通省）（<a href="https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-N03-2026.html">https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-N03-2026.html</a>）を加工して作成 (CC BY 4.0) <span data-meta="ksj"></span></li>
+      <li>町丁目の検索: 「アドレス・ベース・レジストリ」（デジタル庁）（<a href="https://www.digital.go.jp/policies/base_registry_address">https://www.digital.go.jp/policies/base_registry_address</a>）を加工して作成 (<a href="https://www.digital.go.jp/policies/base_registry_address_tos">公共データ利用規約 第1.0版 / PDL1.0</a>)</li>
+      <li>背景地図: OpenFreeMap © OpenMapTiles, Data from OpenStreetMap</li>
+      <li>航空写真: <a href="https://maps.gsi.go.jp/development/ichiran.html">地理院タイル</a> (全国最新写真 (シームレス))。データソース：Landsat8画像（GSI,TSIC,GEO Grid/AIST）, Landsat8画像（courtesy of the U.S. Geological Survey）, 海底地形（GEBCO）。ズーム2〜8の世界衛星モザイク画像: <a href="https://lpdaac.usgs.gov/">NASA/USGS LP DAAC</a>, USGS/EROS, Sioux Falls, South Dakota。配信画像の一部に GRUS画像（© Axelspace）を含みます (南鳥島。対象の4都県には含まれません)。</li>
+      <li>計算: <a href="https://github.com/isshiki/eki-walk">eki-walk</a> と <a href="https://github.com/isshiki/rail-gap-map">rail-gap-map</a> の ekiwalk <span data-meta="ekiwalk"></span></li>
+    </ul>
+    <p>データはこのプロジェクトの作者が加工して作成したものです。生成データベースは <a href="https://opendatacommons.org/licenses/odbl/1-0/">ODbL 1.0</a> で提供し、元の内容には各取得元の条件も適用されます。<a href="https://github.com/isshiki/eki-walk/archive/refs/heads/gh-pages.zip">公開データ全体 (ZIP)</a>。プログラムは Apache-2.0 です。<span data-meta="built"></span></p>
+    <p>現在地の座標と検索文字を、アプリから検索サービス等へ送信することはありません。背景地図・航空写真は表示範囲に応じたタイルを外部の配信元から読み込みます。</p>
+    <form method="dialog"><button>閉じる</button></form>
+  </dialog>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

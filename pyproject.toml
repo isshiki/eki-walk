@@ -1,0 +1,35 @@
+[project]
+name = "eki-walk"
+version = "0.1.0"
+description = "Station territories by walking distance in Greater Tokyo (OpenStreetMap, 国土数値情報, ABR)."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+dependencies = [
+    "numpy>=2.4.6",
+    "pandas>=3.0.6",
+    "pyarrow>=25.0.1",
+    "pyproj>=3.7.2",
+    "rail-gap-map",
+    "scipy>=1.17.1",
+    "shapely>=2.1.2",
+]
+
+[project.scripts]
+eki-walk = "eki_walk.cli:main"
+
+[build-system]
+requires = ["uv_build>=0.9.8,<0.10.0"]
+build-backend = "uv_build"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.uv.sources]
+rail-gap-map = { git = "https://github.com/isshiki/rail-gap-map", rev = "4176263" }
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+]
